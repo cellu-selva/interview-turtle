@@ -2,7 +2,8 @@
     "main": {
         "css": {
             "public/build/css/main.min.css": [
-              "bower_components/angular-material/angular-material.min.css"
+              "bower_components/angular-material/angular-material.min.css",
+              "bower_components/bootswatch-dist/css/bootstrap.min.css"
             ]
         },
         "js": {
@@ -17,14 +18,15 @@
               "bower_components/angular-material-icons/angular-material-icons.min.js",
               "bower_components/angular-messages/angular-messages.min.js",
               "bower_components/angular-ui-grid/ui-grid.min.js",
-              "bower_components/underscore/underscore-min.js"
+              "bower_components/underscore/underscore-min.js",
+              "bower_components/bootswatch-dist/js/bootstrap.min.js"
             ]
         }
     },
     "secondary": {
         "css": {
             "public/build/css/secondary.min.css": [
-              "modules/expense/client/assets/style.css"
+              "modules/turtle/client/assets/style.css"
             ]
         },
         "js": {
