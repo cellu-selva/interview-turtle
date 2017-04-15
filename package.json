@@ -1,0 +1,28 @@
+{
+  "name": "turtle-code-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SelvaNathann/turtle-code-challenge.git"
+  },
+  "author": "selvanathann <reachmeselvaa@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SelvaNathann/turtle-code-challenge/issues"
+  },
+  "homepage": "https://github.com/SelvaNathann/turtle-code-challenge#readme",
+  "dependencies": {
+    "assetmanager": "latest",
+    "body-parser": "latest",
+    "consolidate": "latest",
+    "express": "latest",
+    "lodash": "latest",
+    "mongoose": "latest",
+    "morgan": "latest"
+  }
+}
