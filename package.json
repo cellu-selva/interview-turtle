@@ -18,11 +18,21 @@
   "homepage": "https://github.com/SelvaNathann/turtle-code-challenge#readme",
   "dependencies": {
     "assetmanager": "latest",
+    "async": "latest",
     "body-parser": "latest",
     "consolidate": "latest",
+    "debug": "^2.6.0",
+    "ejs": "~2.5.2",
     "express": "latest",
     "lodash": "latest",
     "mongoose": "latest",
-    "morgan": "latest"
+    "morgan": "latest",
+    "nodemon": "^1.11.0",
+    "path": "^0.12.7",
+    "q": "latest"
+  },
+  "devDependencies": {
+    "require-dir": "latest",
+    "requirejs": "latest"
   }
 }
