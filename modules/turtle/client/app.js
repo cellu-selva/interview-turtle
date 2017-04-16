@@ -1,2 +1,2 @@
 "use strict";
-angular.module('turtleChallenge', ['ui.router', 'ngResource', 'ngMaterial', 'ngMessages']);
+var turtleApplication = angular.module('turtleChallenge', ['ui.router', 'ngResource', 'ngMaterial', 'ngMessages']);

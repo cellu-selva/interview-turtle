@@ -27,6 +27,8 @@
     "angular-animate": "1.5.8",
     "bootstrap": "latest",
     "angular-bootstrap": " ^0.13.3",
-    "bootswatch-dist": "3.3.0-yeti"
+    "bootswatch-dist": "3.3.0-yeti",
+    "jquery-turtle": "https://github.com/PencilCode/jquery-turtle.git#^2.0.7",
+    "qunit": "QUnit#^1.11.0"
   }
 }

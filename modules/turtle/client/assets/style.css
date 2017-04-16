@@ -49,3 +49,12 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
 .md-toolbar-tools {
     background-color: #31B0D5;
 }
+.obstrucle{
+  background-color: red;
+}
+body samp img#turtle{
+  display: block !important;
+}
+body samp#_turtlefield {
+  z-index: 30 !important;
+}

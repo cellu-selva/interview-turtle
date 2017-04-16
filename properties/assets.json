@@ -3,12 +3,13 @@
         "css": {
             "public/build/css/main.min.css": [
               "bower_components/angular-material/angular-material.min.css",
-              "bower_components/bootswatch-dist/css/bootstrap.min.css"
+              "bower_components/bootswatch-dist/css/bootstrap.min.css",
+              "bower_components/qunit/qunit.css"
             ]
         },
         "js": {
             "public/build/js/main.min.js": [
-              "bower_components/jquery/dist/jquery.min.js",
+              "bower_components/jquery/dist/jquery.js",
               "bower_components/angular/angular.js",
               "bower_components/angular-resource/angular-resource.min.js",
               "bower_components/angular-ui-router/release/angular-ui-router.min.js",
@@ -19,7 +20,9 @@
               "bower_components/angular-messages/angular-messages.min.js",
               "bower_components/angular-ui-grid/ui-grid.min.js",
               "bower_components/underscore/underscore-min.js",
-              "bower_components/bootswatch-dist/js/bootstrap.min.js"
+              "bower_components/bootswatch-dist/js/bootstrap.min.js",
+              "bower_components/qunit/qunit.js",
+              "bower_components/jquery-turtle/jquery-turtle.js"
             ]
         }
     },
@@ -32,7 +35,7 @@
         "js": {
             "public/build/js/secondary.min.js": [
               "modules/turtle/client/app.js",
-              "modules/turtle/client/route/turtle-route.js",
+              "modules/turtle/client/routes/turtle-route.js",
               "modules/turtle/client/controller/turtle-controller.js",
               "modules/turtle/client/directive/turtle-directive.js",
               "modules/turtle/client/service/turtle-service.js"
