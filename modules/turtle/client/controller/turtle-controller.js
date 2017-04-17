@@ -48,35 +48,64 @@ function turtleChallengeController(TurtleChallengeService, $timeout) {
      * @return {[type]} [description]
      */
     vm.move = function () {
-        var position = $("#turtle").position(); //Holds the current position of the turtle.
-        var params = {
+        var directionCode = {
+                'R': 1,
+                'L': -1
+            },
+            position = $("#turtle").position(), //Holds the current position of the turtle.
+            params = {
                 currentPosition: position,
                 currentCell: vm.currentCell,
-                currentDirection: vm.currentDirection,
                 gridSize: vm.gridSize,
                 cellwidth: vm.cellSize
-            },
-            rotate = 0;
+            };
         vm.inputDirections = vm.inputDirections.toUpperCase();
-        _.each(vm.inputDirections, function (nextMove) {
-            params.nextMove = nextMove;
-            position = TurtleChallengeService.calculateNextPosition(params);
-            vm.currentDirection = position.currentDirection;
-            vm.currentCell.x = position.x;
-            vm.currentCell.y = position.y;
-            rotate = (nextMove === "R") ? 90 : -90;
-            $("#turtle").css({
-                "-webkit-transform": "rotate(" + rotate + "deg)",
-                "transition-delay": "1s",
-                "transition-duration": "1s"
-            });
-            $("#turtle").css({
-                "-webkit-transform": "translate(" + position.left + "px, " + position.top + "px)",
-                "transition-delay": "1s",
-                "transition-duration": "1s"
-            });
+        async.eachSeries(vm.inputDirections.split(""), function (nextMove, callback) {
+            vm.currentDirection = nextMove !== 'F' ? (vm.currentDirection + directionCode[nextMove]) % 4 : vm.currentDirection;
+            if(nextMove === 'F') {
+                position = TurtleChallengeService.calculateNextPosition(params, vm.currentDirection);
+                if(position.isObstrucle) {
+                    position.left = $("#turtle").position().left;
+                    position.top = $("#turtle").position().top;
+                    position.x = position.previous.x;
+                    position.y = position.previous.y;
+                }
+                params.currentPosition = position;
+                vm.currentCell.x = position.x;
+                vm.currentCell.y = position.y;
+                $("#turtle").css({
+                    'left': position.left,
+                    'top': position.top
+                });
+            }
+            rotateTurtle(vm.currentDirection);
+            $timeout(function () {
+                callback();
+            }, 1000);
+        }, function (err) {
+            console.log('done');
         });
         vm.gridPosition = position;
+    }
+
+    /**
+     * [rotateTurtle description - Rotates the turtle to certain degree with respect to the direction the turtle moves]
+     * @method rotateTurtle
+     * @param  {[type]}     currentDirection [description]
+     * @return {[type]}                      [description]
+     */
+    function rotateTurtle(currentDirection) {
+        var rotateDeg = {
+            'N': 0,
+            'E': 90,
+            'S': 180,
+            'W': 360
+        };
+        $("#turtle").css({
+            "-webkit-transform": "rotate(" + rotateDeg[vm.availableDirections[currentDirection]] + "deg)",
+            "transition-delay": "1s",
+            "transition-duration": "1s"
+        });
     }
 
     /**

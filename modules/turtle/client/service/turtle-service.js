@@ -92,44 +92,34 @@ function turtleChallengeService() {
      * @param  {[type]}              params [description]
      * @return {[type]}                     [description]
      */
-    self.calculateNextPosition = function (params) {
-
-        var directionCode = {
-                'R': 1,
-                'L': -1
+    self.calculateNextPosition = function (params, currentDirection) {
+        var newPosition = {
+            isObstrucle: false,
+            previous: {
+                x: params.currentCell.x,
+                y: params.currentCell.y
             },
-            newPosition = params.currentPosition,
-            inputs = _.clone(params);
-
-        newPosition.x = inputs.currentCell.x;
-        newPosition.y = inputs.currentCell.y;
-        params.currentDirection = params.nextMove !== 'F' ? (params.currentDirection + directionCode[params.nextMove]) % 4 : params.currentDirection;
-        if(params.nextMove === 'F') {
-            if(availableDirections[params.currentDirection] === 'E' && params.currentCell.y + 1 <= params.gridSize) {
-                newPosition.left = params.currentPosition.left + params.cellwidth;
-                newPosition.x = params.currentCell.x;
-                newPosition.y = params.currentCell.y + 1;
-            } else if(availableDirections[params.currentDirection] === 'N' && params.currentCell.x + 1 <= params.gridSize) {
-                newPosition.top = params.currentPosition.top - params.cellwidth;
-                newPosition.x = params.currentCell.x + 1;
-                newPosition.y = params.currentCell.y;
-            } else if(availableDirections[params.currentDirection] === 'W' && params.currentCell.y - 1 >= 1) {
-                newPosition.left = params.currentPosition.left - params.cellwidth;
-                newPosition.x = params.currentCell.x;
-                newPosition.y = params.currentCell.y - 1;
-            } else if(availableDirections[params.currentDirection] === 'S' && params.currentCell.x - 1 >= 1) {
-                newPosition.top = params.currentPosition.top + params.cellwidth;
-                newPosition.x = params.currentCell.x - 1;
-                newPosition.y = params.currentCell.y;
-            }
+            left: params.currentPosition.left,
+            top: params.currentPosition.top
+        };
+        if(availableDirections[currentDirection] === 'E' && params.currentCell.y + 1 <= params.gridSize) {
+            newPosition.left = params.currentPosition.left + params.cellwidth;
+            newPosition.x = params.currentCell.x;
+            newPosition.y = params.currentCell.y + 1;
+        } else if(availableDirections[currentDirection] === 'N' && params.currentCell.x + 1 <= params.gridSize) {
+            newPosition.top = params.currentPosition.top - params.cellwidth;
+            newPosition.x = params.currentCell.x + 1;
+            newPosition.y = params.currentCell.y;
+        } else if(availableDirections[currentDirection] === 'W' && params.currentCell.y - 1 >= 1) {
+            newPosition.left = params.currentPosition.left - params.cellwidth;
+            newPosition.x = params.currentCell.x;
+            newPosition.y = params.currentCell.y - 1;
+        } else if(availableDirections[currentDirection] === 'S' && params.currentCell.x - 1 >= 1) {
+            newPosition.top = params.currentPosition.top + params.cellwidth;
+            newPosition.x = params.currentCell.x - 1;
+            newPosition.y = params.currentCell.y;
         }
-
-        if(self.checkForObstrucle(newPosition, self.obstrucles)) {
-            newPosition = inputs.currentPosition;
-            // newPosition.left = $("#turtle").position().left;
-            // newPosition.top = $("#turtle").position().top;
-        }
-        newPosition.currentDirection = params.currentDirection;
+        newPosition.isObstrucle = self.checkForObstrucle(newPosition, self.obstrucles) ? true : false;
         return newPosition;
     }
 }
