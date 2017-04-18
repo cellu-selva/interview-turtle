@@ -1,4 +1,8 @@
 "use strict";
+/**
+ * Schema - turtleChallenge model or schema.
+ * @author  selvanathan
+ */
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     turtleSchema, position;

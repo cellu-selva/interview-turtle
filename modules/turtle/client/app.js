@@ -1,2 +1,6 @@
+/**
+ * Angular application - turtleChallenge angular application.
+ * @author  selvanathan
+ */
 "use strict";
-var turtleApplication = angular.module('turtleChallenge', ['ui.router', 'ngResource', 'ngMaterial', 'ngMessages']);
+angular.module('turtleChallenge', ['ui.router', 'ngResource', 'ngMaterial', 'ngMessages']);

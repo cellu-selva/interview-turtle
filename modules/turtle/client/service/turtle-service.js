@@ -63,11 +63,11 @@ function turtleChallengeService() {
      * @param  {[type]}           grid       [description]
      * @return {[type]}                      [description]
      */
-    self.generateObstrucles = function (cells, obstrucles, size, grid) {
-        var min = 1,
+    self.generateObstrucles = function (obstrucles, size, grid) {
+        var min = 2,
             max = size * size;
         for(var index = 1; index <= size; index++) {
-            min = index === size ? 3 : 1;
+            min = index === 1 ? 3 : 2;
             obstrucles.push(grid[index - 1][_.random(min, size) - 1])
         }
     }

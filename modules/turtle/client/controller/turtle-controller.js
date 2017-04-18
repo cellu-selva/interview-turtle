@@ -22,18 +22,36 @@ function turtleChallengeController(TurtleChallengeService, $timeout) {
     var vm = this;
     vm.grid = TurtleChallengeService.grid;
     vm.obstrucles = TurtleChallengeService.obstrucles;
-    vm.gridSize = 10;
+    vm.obstruclesOnWay = 0;
+    vm.gridSize = 6;
     vm.cells = TurtleChallengeService.cells;
     vm.currentCell = {
         x: 1,
         y: 1
     };
     vm.availableDirections = ['W', 'N', 'E', 'S'];
-    vm.currentDirection = 1;
+    vm.currentDirection = 1; //1 represents the index of the array. Refer to the availableDirections value. ex 1 = availableDirections[1] = 'W'.
 
-    TurtleChallengeService.generateGrid(vm.gridSize, vm.cells, vm.grid);
-    TurtleChallengeService.generateObstrucles(vm.cells, vm.obstrucles, vm.gridSize, vm.grid);
+    /**
+     * [init description - init method that initiates the grid, obstrucles and the others.]
+     * @method init
+     * @return {[type]} [description]
+     */
+    vm.init = function () {
+        vm.obstrucles.splice(0);
+        vm.cells.splice(0);
+        vm.grid.splice(0);
+        TurtleChallengeService.generateGrid(vm.gridSize, vm.cells, vm.grid);
+        TurtleChallengeService.generateObstrucles(vm.obstrucles, vm.gridSize, vm.grid);
+    }
 
+    /**
+    cellwidth: vm.cellSize
+     * [findObstrucle description - GEts called on grid rendering. ]
+     * @method findObstrucle
+     * @param  {[type]}      cell [description - current cell that is been rendered]
+     * @return {[type - boolean]} [description - returns true if the current cell requesting is an obstrucle or not.]
+     */
     vm.findObstrucle = function (cell) {
         var index = _.findIndex(vm.obstrucles, {
             x: cell.x,
@@ -48,6 +66,7 @@ function turtleChallengeController(TurtleChallengeService, $timeout) {
      * @return {[type]} [description]
      */
     vm.move = function () {
+        var index = 1;
         var directionCode = {
                 'R': 1,
                 'L': -1
@@ -60,13 +79,16 @@ function turtleChallengeController(TurtleChallengeService, $timeout) {
                 cellwidth: vm.cellSize
             };
         vm.inputDirections = vm.inputDirections.toUpperCase();
+        trackTurtlePath(1, 1);
         async.eachSeries(vm.inputDirections.split(""), function (nextMove, callback) {
             vm.currentDirection = nextMove !== 'F' ? (vm.currentDirection + directionCode[nextMove]) % 4 : vm.currentDirection;
             if(nextMove === 'F') {
+                console.log("Befor :: ", position);
                 position = TurtleChallengeService.calculateNextPosition(params, vm.currentDirection);
                 if(position.isObstrucle) {
-                    position.left = $("#turtle").position().left;
-                    position.top = $("#turtle").position().top;
+                    vm.obstruclesOnWay++;
+                    position.left = params.currentPosition.left;
+                    position.top = params.currentPosition.top;
                     position.x = position.previous.x;
                     position.y = position.previous.y;
                 }
@@ -75,17 +97,26 @@ function turtleChallengeController(TurtleChallengeService, $timeout) {
                 vm.currentCell.y = position.y;
                 $("#turtle").css({
                     'left': position.left,
-                    'top': position.top
+                    'top': position.top,
                 });
+                trackTurtlePath(position.x, position.y);
             }
-            rotateTurtle(vm.currentDirection);
-            $timeout(function () {
-                callback();
-            }, 1000);
+            rotateTurtle(vm.currentDirection, callback, index++);
         }, function (err) {
-            console.log('done');
+            vm.isDone = true;
+            vm.gridPosition = position;
+            vm.outputDirections = _.clone(vm.inputDirections);
+            vm.inputDirections = "";
+            vm.reset();
         });
-        vm.gridPosition = position;
+    }
+
+    function trackTurtlePath(x, y) {
+        $timeout(function () {
+            $(".x-" + x + ".y-" + y).css({
+                'background-color': '#31B0D5'
+            });
+        }, 3000);
     }
 
     /**
@@ -94,7 +125,7 @@ function turtleChallengeController(TurtleChallengeService, $timeout) {
      * @param  {[type]}     currentDirection [description]
      * @return {[type]}                      [description]
      */
-    function rotateTurtle(currentDirection) {
+    function rotateTurtle(currentDirection, callback, index) {
         var rotateDeg = {
             'N': 0,
             'E': 90,
@@ -106,6 +137,10 @@ function turtleChallengeController(TurtleChallengeService, $timeout) {
             "transition-delay": "1s",
             "transition-duration": "1s"
         });
+        $timeout(function () {
+            callback();
+        }, 300 * index);
+
     }
 
     /**
@@ -114,11 +149,10 @@ function turtleChallengeController(TurtleChallengeService, $timeout) {
      */
     vm.reset = function () {
         $("#turtle").css({
-            "-webkit-transform": "translate(21px,391px)",
+            "-webkit-transform": "translate(0px,0px)",
             "transition-delay": "1s",
             "transition-duration": "1s"
         });
-        //vm.currentDirection = 1;
     }
 
     /**
@@ -134,3 +168,17 @@ function turtleChallengeController(TurtleChallengeService, $timeout) {
         }
     }
 }
+
+/**
+ * Filter for generating values form 6 to the max no that is passed to it.
+ */
+angular.module("turtleChallenge")
+    .filter('range', function () {
+        return function (input, max) {
+            max = parseInt(max);
+            for(var i = 6; i < max; i++) {
+                input.push(i);
+            }
+            return input;
+        };
+    });
