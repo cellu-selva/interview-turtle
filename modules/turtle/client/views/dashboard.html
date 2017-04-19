@@ -1,0 +1,55 @@
+<div flex="100" layout="row">
+  <div class="m-t-30 text-center" flex-offset="35" flex="30" style="width: 30%">
+    <H2>Turtle command</H2>
+    <grid></grid>
+    <div class="m-t-30" flex="100" style="display: flex">
+      <span class="red font-14">
+        Grid size can be configured.The default grid size would be 6 X 6.</span>
+      <md-input-container flex="20" style="width: 50px;margin: -9px 5px 0px 10px;font-size: 17px;">
+            <md-select name="type" ng-model="turtleChallengeCtrl.gridSize" ng-change="calculateCellSize();turtleChallengeCtrl.init()" required>
+              <md-option ng-repeat="size in [] | range:14" value="{{size}}">
+                  {{size}}
+                </md-option>
+            </md-select>
+          </md-input-container>
+    </div>
+  </div>
+</div>
+<div class="m-t-20" flex="100" layout="row">
+  <md-card layout-padding flex-offset="20" flex="30" class="direction-container">
+    <md-card-title>
+      <md-card-title-text layout="column" layout-padding >
+        <span class="md-headline">Command the turtle</span>
+        <span class="md-subhead">F - Forward, R - Turn right, L - Left</span>
+      </md-card-title-text>
+      <md-card-title-media>
+      </md-card-title-media>
+    </md-card-title>
+    <md-input-container class="md-block" md-theme="docs-dark">
+      <label class="font-16">Directions</label>
+      <input ng-model="turtleChallengeCtrl.inputDirections" type="text" ng-keydown="turtleChallengeCtrl.restrictInput($event);$event.keyCode == 13 && turtleChallengeCtrl.move()">
+    </md-input-container>
+  </md-card>
+
+  <md-card layout-padding flex="30" class="direction-container">
+    <md-card-title>
+      <md-card-title-text layout="column" layout-padding>
+        <span class="md-headline">Result:</span>
+        <span class="md-subhead"></span>
+      </md-card-title-text>
+      <md-card-title-media>
+        <div class="md-media-lg card-media result" layout="column" layout-padding ng-if="turtleChallengeCtrl.isDone">
+          <span class="font-20">Input: {{turtleChallengeCtrl.outputDirections}}</span>
+          <span class="font-20">Output: {{turtleChallengeCtrl.gridPosition.x || 1}},
+            {{turtleChallengeCtrl.gridPosition.y || 1}} {{turtleChallengeCtrl.availableDirections[turtleChallengeCtrl.currentDirection] || 'df'}}</span>
+          <span>No of input ended up with obstrucles: {{turtleChallengeCtrl.obstruclesOnWay}}</span>
+        </div>
+        <div class="md-media-lg card-media result" layout="column" layout-padding ng-if="!turtleChallengeCtrl.isDone">
+          <span class="font-20">
+            Input your command to the turtle to get your result
+          </span>
+        </div>
+      </md-card-title-media>
+    </md-card-title>
+  </md-card>
+</div>
