@@ -24,6 +24,7 @@ function turtleChallengeService() {
     self.obstrucles = [];
     self.grid = [];
     self.cells = [];
+    self.gridSize = 6;
 
     /**
      * [generateGrid description - Created a n * n grid.]

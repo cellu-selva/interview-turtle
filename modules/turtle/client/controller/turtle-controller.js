@@ -23,7 +23,7 @@ function turtleChallengeController(TurtleChallengeService, $timeout) {
     vm.grid = TurtleChallengeService.grid;
     vm.obstrucles = TurtleChallengeService.obstrucles;
     vm.obstruclesOnWay = 0;
-    vm.gridSize = 6;
+    vm.gridSize = TurtleChallengeService.gridSize;
     vm.cells = TurtleChallengeService.cells;
     vm.currentCell = {
         x: 1,
@@ -83,7 +83,6 @@ function turtleChallengeController(TurtleChallengeService, $timeout) {
         async.eachSeries(vm.inputDirections.split(""), function (nextMove, callback) {
             vm.currentDirection = nextMove !== 'F' ? (vm.currentDirection + directionCode[nextMove]) % 4 : vm.currentDirection;
             if(nextMove === 'F') {
-                console.log("Befor :: ", position);
                 position = TurtleChallengeService.calculateNextPosition(params, vm.currentDirection);
                 if(position.isObstrucle) {
                     vm.obstruclesOnWay++;
