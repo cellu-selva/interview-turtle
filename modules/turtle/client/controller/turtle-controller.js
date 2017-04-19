@@ -100,7 +100,8 @@ function turtleChallengeController(TurtleChallengeService, $timeout) {
                 });
                 trackTurtlePath(position.x, position.y);
             }
-            rotateTurtle(vm.currentDirection, callback, index++);
+            if(!position.isObstrucle) rotateTurtle(vm.currentDirection, callback, index++);
+            else callback();
         }, function (err) {
             vm.isDone = true;
             vm.gridPosition = position;
