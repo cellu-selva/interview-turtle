@@ -119,6 +119,9 @@ function turtleChallengeService() {
             newPosition.top = params.currentPosition.top + params.cellwidth;
             newPosition.x = params.currentCell.x - 1;
             newPosition.y = params.currentCell.y;
+        } else {
+          newPosition.x = params.currentCell.x;
+          newPosition.y = params.currentCell.y;
         }
         newPosition.isObstrucle = self.checkForObstrucle(newPosition, self.obstrucles) ? true : false;
         return newPosition;

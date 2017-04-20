@@ -83,6 +83,7 @@ function turtleChallengeController(TurtleChallengeService, $timeout) {
         async.eachSeries(vm.inputDirections.split(""), function (nextMove, callback) {
             vm.currentDirection = nextMove !== 'F' ? (vm.currentDirection + directionCode[nextMove]) % 4 : vm.currentDirection;
             if(nextMove === 'F') {
+              vm.currentDirection = vm.currentDirection < 0 ? vm.currentDirection + 4 : vm.currentDirection;
                 position = TurtleChallengeService.calculateNextPosition(params, vm.currentDirection);
                 if(position.isObstrucle) {
                     vm.obstruclesOnWay++;
@@ -100,14 +101,16 @@ function turtleChallengeController(TurtleChallengeService, $timeout) {
                 });
                 trackTurtlePath(position.x, position.y);
             }
-            if(!position.isObstrucle) rotateTurtle(vm.currentDirection, callback, index++);
+            if(!position.isObstrucle){
+              rotateTurtle(vm.currentDirection, callback, index++);
+            }
             else callback();
         }, function (err) {
             vm.isDone = true;
             vm.gridPosition = position;
             vm.outputDirections = _.clone(vm.inputDirections);
             vm.inputDirections = "";
-            vm.reset();
+            //vm.reset();
         });
     }
 
@@ -139,7 +142,7 @@ function turtleChallengeController(TurtleChallengeService, $timeout) {
         });
         $timeout(function () {
             callback();
-        }, 300 * index);
+        }, 150 * index);
 
     }
 

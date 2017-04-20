@@ -41,7 +41,7 @@
         <div class="md-media-lg card-media result" layout="column" layout-padding ng-if="turtleChallengeCtrl.isDone">
           <span class="font-20">Input: {{turtleChallengeCtrl.outputDirections}}</span>
           <span class="font-20">Output: {{turtleChallengeCtrl.gridPosition.x || 1}},
-            {{turtleChallengeCtrl.gridPosition.y || 1}} {{turtleChallengeCtrl.availableDirections[turtleChallengeCtrl.currentDirection] || 'df'}}</span>
+            {{turtleChallengeCtrl.gridPosition.y || 1}} {{turtleChallengeCtrl.availableDirections[turtleChallengeCtrl.currentDirection]}}</span>
           <span>No of input ended up with obstrucles: {{turtleChallengeCtrl.obstruclesOnWay}}</span>
         </div>
         <div class="md-media-lg card-media result" layout="column" layout-padding ng-if="!turtleChallengeCtrl.isDone">
