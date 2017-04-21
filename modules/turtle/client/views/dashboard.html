@@ -1,11 +1,11 @@
 <div flex="100" layout="row">
-  <div class="m-t-30 text-center" flex-offset="35" flex="30" style="width: 30%">
+  <div class="m-t-30 grid text-center" flex-offset="35" flex="30">
     <H2>Turtle command</H2>
     <grid></grid>
-    <div class="m-t-30" flex="100" style="display: flex">
+    <div class="grid-note-text m-t-30" flex="100">
       <span class="red font-14">
         Grid size can be configured.The default grid size would be 6 X 6.</span>
-      <md-input-container flex="20" style="width: 50px;margin: -9px 5px 0px 10px;font-size: 17px;">
+      <md-input-container flex="20" class="grid-size">
             <md-select name="type" ng-model="turtleChallengeCtrl.gridSize" ng-change="calculateCellSize();turtleChallengeCtrl.init()" required>
               <md-option ng-repeat="size in [] | range:14" value="{{size}}">
                   {{size}}
