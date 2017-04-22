@@ -26,3 +26,15 @@
 .text-center {
   text-align: center;
 }
+.to-upper-case {
+  text-transform: uppercase;
+}
+.word-wrap {
+  word-wrap: break-word;
+}
+.no-margin {
+  margin: 0;
+}
+.bg-blue {
+  background:#31b0d5;
+}

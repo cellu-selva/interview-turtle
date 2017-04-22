@@ -14,15 +14,14 @@ angular.module("turtleChallenge")
  * [$injector description - Dependency injection for the grid directive]
  * @type {Array}
  */
-grid.$injector = ['TurtleChallengeService'];
+grid.$injector = ['$timeout'];
 
 /**
  * [grid description - Actual service for the grid which acts as a component]
  * @method grid
- * @param  {[type]} TurtleChallengeService [description]
- * @return {[type]}                        [description]
+ * @return {[type]}  [description]
  */
-function grid(TurtleChallengeService) {
+function grid($timeout) {
     return {
         restrict: 'E',
         scope: '@',
@@ -33,6 +32,45 @@ function grid(TurtleChallengeService) {
                 scope.turtleChallengeCtrl.cellSize = parentWidth / scope.turtleChallengeCtrl.gridSize;
             };
             scope.calculateCellSize();
+
+            /**
+             * [renderMovement description - Renders the turtle movement. ]
+             * @method renderMovement
+             * @return {[type]}       [description]
+             */
+            scope.renderMovement = function () {
+                var rotateDeg = {
+                    'North': 0,
+                    'East': 90,
+                    'South': 180,
+                    'West': 270
+                };
+                async.eachSeries(scope.turtleChallengeCtrl.turtle.traversedCells, function (nextMove, callback) {
+                    $timeout(function () {
+                        $timeout(function () {
+                            angular.element('#turtle').css({
+                                'left': nextMove.left,
+                                'top': nextMove.top
+                            });
+                            $timeout(function () {
+                                angular.element(".x-" + nextMove.x + ".y-" + nextMove.y).css({
+                                    'background-color': '#31B0D5'
+                                });
+                                callback();
+                            }, 400);
+                        }, 200);
+                        $("#turtle").css({
+                            "-webkit-transform": "rotate(" + rotateDeg[scope.turtleChallengeCtrl.availableDirections[nextMove.direction]] + "deg)",
+                            "transition-delay": "1s",
+                            "transition-duration": "1s"
+                        });
+                    }, 250);
+                }, function (err) {
+                    scope.turtleChallengeCtrl.isDone = true;
+                    scope.turtleChallengeCtrl.outputDirections = scope.turtleChallengeCtrl.inputDirections;
+                    scope.turtleChallengeCtrl.gridPosition = scope.turtleChallengeCtrl.turtle.traversedCells[scope.turtleChallengeCtrl.turtle.traversedCells.length - 1];
+                });
+            }
         }
     }
 }

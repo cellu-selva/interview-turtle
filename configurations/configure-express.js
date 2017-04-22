@@ -6,8 +6,7 @@ var express = require('express'),
     logger = require('morgan'),
     bodyParser = require('body-parser'),
     assetmanager = require('assetmanager');
-var configureDatabase = require(path.join(__dirname, '/configure-mongo-connection.js')),
-    enviroProperties = require(path.join(__dirname, '/../properties/environment-properties.js')),
+var enviroProperties = require(path.join(__dirname, '/../properties/environment-properties.js')),
     expressProperties = require(path.join(__dirname, '/../properties/express-properties.js'));
 var turtleRoute = require('./../modules/turtle/server/routes/turtle-routes');
 var app = express();
@@ -47,15 +46,4 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
-/**
- * [Mongo description - Establishing mongo connection. ]
- * @type {[type]}
- */
-configureDatabase.connectToMongo(function (err) {
-    if(err) {
-        console.log("Error Connecting Mongo :: ", err);
-    } else {
-        console.log("Successfully connected to mongo");
-    }
-});
 module.exports = app;

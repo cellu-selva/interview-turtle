@@ -5,7 +5,10 @@
 var assert = require('chai').assert;
 require('./test-helper');
 var app = angular.module('turtleChallenge', []);
-require('../modules/turtle/client/service/turtle-service');
+require('../modules/turtle/client/controller/turtle-controller');
+require('../modules/turtle/client/service/model-service');
+var data = require('./sample-data');
+
 
 /**
  * [obstrucles description - unit test case for checking basic functionality for the grid.]
@@ -18,58 +21,53 @@ describe('Initialize app and  generate grid, obstrucles, checkForObstrucle ', fu
     beforeEach(ngModule('turtleChallenge'));
 
     /**
-     * Unit test case for checking the default grid size is 6 equals the expected.
+     * Unit test case for creating the turtle object from the model.
      */
-    it('grid size should be equal to 6', inject(function (TurtleChallengeService) {
-        assert.equal(TurtleChallengeService.gridSize, 6);
+    it('Should creating turtle model', inject(function (TurtleModel) {
+        var turtle = new TurtleModel(1, 1, {
+            left: 0,
+            top: 0
+        }, 1);
+        assert.equal(turtle.hasOwnProperty('currentState'), true);
     }));
 
     /**
-     * Test suit for checking whether the no of cells generated for default grid size equals the expected.
+     * Unit test case for creating the Grid object from the model.
      */
-    it('Generating cells for 6 x 6 grid', inject(function (TurtleChallengeService) {
-        TurtleChallengeService.generateGrid(TurtleChallengeService.gridSize, TurtleChallengeService.cells, TurtleChallengeService.grid);
-        assert.equal(TurtleChallengeService.gridSize * TurtleChallengeService.gridSize, TurtleChallengeService.cells && TurtleChallengeService.cells.length);
+    it('Should create grid model', inject(function (GridModel) {
+        var gridSize = 6,
+            cellSize = 100;
+        var grid = new GridModel(gridSize, cellSize);
+        assert.equal(grid.hasOwnProperty('grid'), true);
+    }));
+
+
+    /**
+     * Positive test case for determining the last position of the turtle for the given input.
+     */
+    it('Expected end position 2,6 of turtle should match with the exact output', inject(function ($controller) {
+        var myController = $controller('turtleChallengeController');
+        myController.cellSize = 50;
+        myController.init();
+        myController.inputDirections = "RFFFLFFRFRFLFFFFFF";
+        myController.gridModel.grid = data;
+        myController.move(myController.cellSize, 1, myController.gridSize);
+        assert.equal(myController.turtle.traversedCells[myController.turtle.traversedCells.length - 1].x, 2);
+        assert.equal(myController.turtle.traversedCells[myController.turtle.traversedCells.length - 1].y, 6);
     }));
 
     /**
-     * Test suit for checking whether the no of obstrucles generated for default grid size equals the expected.
+     * Negative test case for determining the last position of the turtle for the given input.
      */
-    it('Generating obstrucles for 6 x 6 grid', inject(function (TurtleChallengeService) {
-        var obstrucles = [];
-        TurtleChallengeService.generateGrid(TurtleChallengeService.gridSize, TurtleChallengeService.cells, TurtleChallengeService.grid);
-        TurtleChallengeService.generateObstrucles(TurtleChallengeService.obstrucles, TurtleChallengeService.gridSize, TurtleChallengeService.grid);
-        assert.equal(TurtleChallengeService.gridSize, TurtleChallengeService.obstrucles && TurtleChallengeService.obstrucles.length);
-    }));
-
-    /**
-     * Test suit for checking whether the [1, 1] cell is not an obstrucles.
-     */
-    it('Check whether [1,1] cell is and obstrucle. (Not an obstrucle)', inject(function (TurtleChallengeService) {
-        var obstrucles = [];
-        TurtleChallengeService.generateGrid(TurtleChallengeService.gridSize, TurtleChallengeService.cells, TurtleChallengeService.grid);
-        TurtleChallengeService.generateObstrucles(TurtleChallengeService.obstrucles, TurtleChallengeService.gridSize, TurtleChallengeService.grid);
-        assert.equal(TurtleChallengeService.checkForObstrucle({
-            x: 1,
-            y: 1
-        }, TurtleChallengeService.obstrucles), false);
-    }));
-
-    /**
-     * Test suit for checking whether the [4, 1] cell is an obstrucles.
-     */
-    it('Check whether [4,1] cell is and obstrucle. (should be an obstrucle)', inject(function (TurtleChallengeService) {
-        var obstrucles = [];
-        // TurtleChallengeService.generateGrid(TurtleChallengeService.gridSize, TurtleChallengeService.cells, TurtleChallengeService.grid);
-        // TurtleChallengeService.generateObstrucles(TurtleChallengeService.obstrucles, TurtleChallengeService.gridSize, TurtleChallengeService.grid);
-        TurtleChallengeService.obstrucles.push({
-            x: 4,
-            y: 1
-        });
-        assert.equal(TurtleChallengeService.checkForObstrucle({
-            x: 4,
-            y: 1
-        }, TurtleChallengeService.obstrucles), true);
+    it('Expected end position 2,7 of turtle should not match with the exact output', inject(function ($controller) {
+        var myController = $controller('turtleChallengeController');
+        myController.cellSize = 50;
+        myController.init();
+        myController.inputDirections = "RFFFLFFRFRFLFFFFFF";
+        myController.gridModel.grid = data;
+        myController.move(myController.cellSize, 1, myController.gridSize);
+        assert.equal(myController.turtle.traversedCells[myController.turtle.traversedCells.length - 1].x, 2);
+        assert.notEqual(myController.turtle.traversedCells[myController.turtle.traversedCells.length - 1].y, 9);
     }));
 
 });

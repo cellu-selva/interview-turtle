@@ -27,7 +27,7 @@
     </md-card-title>
     <md-input-container class="md-block" md-theme="docs-dark">
       <label class="font-16">Directions</label>
-      <input ng-model="turtleChallengeCtrl.inputDirections" type="text" ng-keydown="turtleChallengeCtrl.restrictInput($event);$event.keyCode == 13 && turtleChallengeCtrl.move()">
+      <input class="to-upper-case" ng-model="turtleChallengeCtrl.inputDirections" type="text" ng-keydown="turtleChallengeCtrl.restrictInput($event);$event.keyCode == 13 && turtleChallengeCtrl.move(turtleChallengeCtrl.cellsize, turtleChallengeCtrl.availableDirections, turtleChallengeCtrl.gridSize) && renderMovement();">
     </md-input-container>
   </md-card>
 
@@ -39,10 +39,10 @@
       </md-card-title-text>
       <md-card-title-media>
         <div class="md-media-lg card-media result" layout="column" layout-padding ng-if="turtleChallengeCtrl.isDone">
-          <span class="font-20">Input: {{turtleChallengeCtrl.outputDirections}}</span>
-          <span class="font-20">Output: {{turtleChallengeCtrl.gridPosition.x || 1}},
-            {{turtleChallengeCtrl.gridPosition.y || 1}} {{turtleChallengeCtrl.availableDirections[turtleChallengeCtrl.currentDirection]}}</span>
-          <span>No of input ended up with obstrucles: {{turtleChallengeCtrl.obstruclesOnWay}}</span>
+          <h3 class="no-margin">Input:</h3><span class="font-20 word-wrap"> {{turtleChallengeCtrl.outputDirections}}</span>
+          <h3 clss="no-margin">Output:</h3><span class="font-20 word-wrap"> {{turtleChallengeCtrl.gridPosition.x || 1}},
+            {{turtleChallengeCtrl.gridPosition.y || 1}} {{turtleChallengeCtrl.availableDirections[turtleChallengeCtrl.gridPosition.direction]}}</span>
+          <span>No of input ended up with obstrucles: {{turtleChallengeCtrl.turtle.obstruclesHit.length}}</span>
         </div>
         <div class="md-media-lg card-media result" layout="column" layout-padding ng-if="!turtleChallengeCtrl.isDone">
           <span class="font-20">

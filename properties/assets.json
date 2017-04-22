@@ -35,7 +35,7 @@
               "modules/turtle/client/routes/turtle-route.js",
               "modules/turtle/client/controller/turtle-controller.js",
               "modules/turtle/client/directive/turtle-directive.js",
-              "modules/turtle/client/service/turtle-service.js"
+              "modules/turtle/client/service/model-service.js"
             ]
         }
     }

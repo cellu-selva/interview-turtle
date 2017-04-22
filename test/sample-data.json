@@ -1,0 +1,302 @@
+[
+  [
+    {
+      "x": 6,
+      "y": 1,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": true,
+      "$$hashKey": "object:66"
+    },
+    {
+      "x": 6,
+      "y": 2,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": true,
+      "$$hashKey": "object:67"
+    },
+    {
+      "x": 6,
+      "y": 3,
+      "traversedCount": 0,
+      "isObstrucle": "obstrucle",
+      "isOnEdge": true,
+      "$$hashKey": "object:68"
+    },
+    {
+      "x": 6,
+      "y": 4,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": true,
+      "$$hashKey": "object:69"
+    },
+    {
+      "x": 6,
+      "y": 5,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": true,
+      "$$hashKey": "object:70"
+    },
+    {
+      "x": 6,
+      "y": 6,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": true,
+      "$$hashKey": "object:71"
+    }
+  ],
+  [
+    {
+      "x": 5,
+      "y": 1,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": true,
+      "$$hashKey": "object:84"
+    },
+    {
+      "x": 5,
+      "y": 2,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:85"
+    },
+    {
+      "x": 5,
+      "y": 3,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:86"
+    },
+    {
+      "x": 5,
+      "y": 4,
+      "traversedCount": 0,
+      "isObstrucle": "obstrucle",
+      "isOnEdge": false,
+      "$$hashKey": "object:87"
+    },
+    {
+      "x": 5,
+      "y": 5,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:88"
+    },
+    {
+      "x": 5,
+      "y": 6,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:89"
+    }
+  ],
+  [
+    {
+      "x": 4,
+      "y": 1,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": true,
+      "$$hashKey": "object:102"
+    },
+    {
+      "x": 4,
+      "y": 2,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:103"
+    },
+    {
+      "x": 4,
+      "y": 3,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:104"
+    },
+    {
+      "x": 4,
+      "y": 4,
+      "traversedCount": 0,
+      "isObstrucle": "obstrucle",
+      "isOnEdge": false,
+      "$$hashKey": "object:105"
+    },
+    {
+      "x": 4,
+      "y": 5,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:106"
+    },
+    {
+      "x": 4,
+      "y": 6,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:107"
+    }
+  ],
+  [
+    {
+      "x": 3,
+      "y": 1,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": true,
+      "$$hashKey": "object:120"
+    },
+    {
+      "x": 3,
+      "y": 2,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:121"
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:122"
+    },
+    {
+      "x": 3,
+      "y": 4,
+      "traversedCount": 0,
+      "isObstrucle": "obstrucle",
+      "isOnEdge": false,
+      "$$hashKey": "object:123"
+    },
+    {
+      "x": 3,
+      "y": 5,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:124"
+    },
+    {
+      "x": 3,
+      "y": 6,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:125"
+    }
+  ],
+  [
+    {
+      "x": 2,
+      "y": 1,
+      "traversedCount": 0,
+      "isObstrucle": "obstrucle",
+      "isOnEdge": true,
+      "$$hashKey": "object:138"
+    },
+    {
+      "x": 2,
+      "y": 2,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:139"
+    },
+    {
+      "x": 2,
+      "y": 3,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:140"
+    },
+    {
+      "x": 2,
+      "y": 4,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:141"
+    },
+    {
+      "x": 2,
+      "y": 5,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:142"
+    },
+    {
+      "x": 2,
+      "y": 6,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": false,
+      "$$hashKey": "object:143"
+    }
+  ],
+  [
+    {
+      "x": 1,
+      "y": 1,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": true,
+      "$$hashKey": "object:156"
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": true,
+      "$$hashKey": "object:157"
+    },
+    {
+      "x": 1,
+      "y": 3,
+      "traversedCount": 0,
+      "isObstrucle": "obstrucle",
+      "isOnEdge": true,
+      "$$hashKey": "object:158"
+    },
+    {
+      "x": 1,
+      "y": 4,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": true,
+      "$$hashKey": "object:159"
+    },
+    {
+      "x": 1,
+      "y": 5,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": true,
+      "$$hashKey": "object:160"
+    },
+    {
+      "x": 1,
+      "y": 6,
+      "traversedCount": 0,
+      "isObstrucle": "normal",
+      "isOnEdge": true,
+      "$$hashKey": "object:161"
+    }
+  ]
+]
